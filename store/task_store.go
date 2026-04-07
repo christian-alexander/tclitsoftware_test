@@ -27,7 +27,7 @@ func GetTaskByID(id int) *models.Task {
 	return nil
 }
 
-func AddTask(task models.Task) {
+func AddTask(task models.Task) *models.Task {
 	// improvement 1 : if acc, id pakai auto increment, karena umumnya id tidak diinput sendiri. Namun: ini perlu crosscheck terkait penggunaan apinya untuk apa, terkadang ada api yang khusus menerima inputan id juga karena kebutuhan sinkronisasi antar project. Tujuan auto increment agar ada jaminan id unik.
 
 	var newId = utils.GetMaxID(Tasks) + 1
@@ -35,6 +35,8 @@ func AddTask(task models.Task) {
 
 	// append new task
 	Tasks = append(Tasks, task)
+
+	return &task
 }
 
 func EditTask(newTask models.Task) *models.Task {

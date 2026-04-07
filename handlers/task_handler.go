@@ -62,9 +62,9 @@ func CreateTask(c *fiber.Ctx) error {
 	}
 
 	// store
-	store.AddTask(task)
+	taskAppended := store.AddTask(task)
 
-	return c.JSON(task)
+	return c.JSON(taskAppended)
 }
 
 func UpdateTask(c *fiber.Ctx) error {
@@ -95,9 +95,9 @@ func UpdateTask(c *fiber.Ctx) error {
 	}
 
 	// store
-	store.EditTask(task)
+	taskEdited := store.EditTask(task)
 
-	return c.JSON(task)
+	return c.JSON(taskEdited)
 }
 
 func DeleteTask(c *fiber.Ctx) error {
