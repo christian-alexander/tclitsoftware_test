@@ -11,4 +11,4 @@
 3. returnan untuk tasks, jangan pakai copy an dari tasks, return pointer tasknya. return copyan dari tasks hanya cocok untuk data return yang read only. kalau sewaktu waktu porgram ini berkembang lebih kompleks dan get task dipakai di module lain. dan ada yang mutate hasil GetTaskById, maka instance Tasks nya tidak berubah karena yang direturn copyan
 
 ## improvement
-1. 
+1. id pakai auto increment, karena umumnya id tidak diinput sendiri. Namun: ini perlu crosscheck terkait penggunaan apinya untuk apa, terkadang ada api yang khusus menerima inputan id juga karena kebutuhan sinkronisasi antar project. Tujuan auto increment agar ada jaminan id unik.
