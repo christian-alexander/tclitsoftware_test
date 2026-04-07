@@ -1,6 +1,9 @@
 package store
 
-import "stability-test-task-api/models"
+import (
+	"stability-test-task-api/models"
+	"stability-test-task-api/utils"
+)
 
 var Tasks = []models.Task{
 	{ID: 1, Title: "Learn Go", Done: false},
@@ -25,6 +28,12 @@ func GetTaskByID(id int) *models.Task {
 }
 
 func AddTask(task models.Task) {
+	// improvement 1 : if acc, id pakai auto increment, karena umumnya id tidak diinput sendiri. Namun: ini perlu crosscheck terkait penggunaan apinya untuk apa, terkadang ada api yang khusus menerima inputan id juga karena kebutuhan sinkronisasi antar project. Tujuan auto increment agar ada jaminan id unik.
+
+	var newId = utils.GetMaxID(Tasks) + 1
+	task.ID = newId
+
+	// append new task
 	Tasks = append(Tasks, task)
 }
 
