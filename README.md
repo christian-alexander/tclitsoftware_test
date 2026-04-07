@@ -12,3 +12,4 @@
 
 ## improvement
 1. id pakai auto increment, karena umumnya id tidak diinput sendiri. Namun: ini perlu crosscheck terkait penggunaan apinya untuk apa, terkadang ada api yang khusus menerima inputan id juga karena kebutuhan sinkronisasi antar project. Tujuan auto increment agar ada jaminan id unik.
+2. tambahkan endpoint untuk edit task, karena tak lengkap rasanya bila crud tanpa update, terutama butuh untuk update status.
