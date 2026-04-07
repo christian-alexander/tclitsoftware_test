@@ -18,7 +18,7 @@ func GetTaskByID(id int) *models.Task {
 	// dan ada yang mutate hasil GetTaskById, maka instance Tasks nya tidak berubah karena yang direturn copyan
 	for i := range Tasks {
 		if Tasks[i].ID == id {
-			return Tasks
+			return &Tasks[i]
 		}
 	}
 	return nil
