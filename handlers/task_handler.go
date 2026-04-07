@@ -67,6 +67,39 @@ func CreateTask(c *fiber.Ctx) error {
 	return c.JSON(task)
 }
 
+func UpdateTask(c *fiber.Ctx) error {
+	var task models.Task
+
+	// cek json
+	if err := c.BodyParser(&task); err != nil {
+		// return 400 bad request, karena format format input tidak sesuai dengan struct Task
+		return c.Status(400).JSON(fiber.Map{
+			"error": "invalid JSON",
+		})
+	}
+
+	// validasi inputan berdasarkan struct Task
+	if err := validate.Struct(task); err != nil {
+		validationErrors := err.(validator.ValidationErrors)
+
+		errorLists := []string{}
+		// append setiap pesan error ke arr errorLists
+		for _, e := range validationErrors {
+			errorLists = append(errorLists, e.Field()+" is "+e.Tag())
+		}
+
+		// return pesan error pertama saja agar tidak mengubah format response (errors: msg), dengan status 400 bad request
+		return c.Status(400).JSON(fiber.Map{
+			"errors": errorLists[0],
+		})
+	}
+
+	// store
+	store.EditTask(task)
+
+	return c.JSON(task)
+}
+
 func DeleteTask(c *fiber.Ctx) error {
 	idParam := c.Params("id")
 

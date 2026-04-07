@@ -37,6 +37,14 @@ func AddTask(task models.Task) {
 	Tasks = append(Tasks, task)
 }
 
+func EditTask(newTask models.Task) *models.Task {
+	// nah tujuan getTaskById tidak return copyan berguna disini, ketika mutate obj
+	var task *models.Task = GetTaskByID(newTask.ID)
+	task.Title = newTask.Title
+	task.Done = newTask.Done
+	return task
+}
+
 func DeleteTask(id int) {
 	for i, t := range Tasks {
 		if t.ID == id {
