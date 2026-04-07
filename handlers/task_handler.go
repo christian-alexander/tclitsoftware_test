@@ -22,7 +22,7 @@ func GetTask(c *fiber.Ctx) error {
 	task := store.GetTaskByID(id)
 
 	if task == nil {
-		return c.Status(200).JSON(fiber.Map{
+		return c.Status(404).JSON(fiber.Map{
 			"error": "task not found",
 		})
 	}
