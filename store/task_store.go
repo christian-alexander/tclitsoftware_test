@@ -12,9 +12,13 @@ func GetAllTasks() []models.Task {
 }
 
 func GetTaskByID(id int) *models.Task {
-	for _, t := range Tasks {
-		if t.ID == id {
-			return &t
+	// returnan untuk tasks, jangan pakai copy an dari tasks, return pointer tasknya
+	// return copyan dari tasks hanya cocok untuk data return yang read only
+	// kalau sewaktu waktu porgram ini berkembang lebih kompleks dan get task dipakai di module lain
+	// dan ada yang mutate hasil GetTaskById, maka instance Tasks nya tidak berubah karena yang direturn copyan
+	for i := range Tasks {
+		if Tasks[i].ID == id {
+			return Tasks
 		}
 	}
 	return nil
