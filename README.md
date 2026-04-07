@@ -1,44 +1,10 @@
-# Stability Team Technical Test
+# Stability Team Technical Test : Christian Alexander
 
-This repository contains a simple Task Manager API built with Go and Fiber.
-Your task is to improve the stability and correctness of this system.
+## Issues Found 
+1. HTTP status code yang salah ketika akses GetTasks dengan ID yang tidak ada
 
-## Setup
+## How to fix 
+1. Ketika ada hit dengan ID yang tidak ditemukan, harusnya return 404 (not found) bukan 200 (OK)
 
-Install dependencies:
-go mod tidy
-
-Run the server:
-go run main.go
-
-Server will run at:
-http://localhost:3000
-
-## Available Endpoints
-
-GET /tasks  
-GET /tasks/:id  
-POST /tasks  
-DELETE /tasks/:id
-
-## Your Tasks
-
-1. Run the project
-2. Identify issues or bugs
-3. Fix the issues
-4. Add one improvement to the project
-
-Examples of improvements:
-- input validation
-- better error handling
-- improved API responses
-- code refactoring
-
-## Submission
-
-Submit a GitHub repository containing:
-- your updated code
-- a README explaining:
-  - what issues you found
-  - how you fixed them
-  - what improvement you added
+## improvement
+1. 
